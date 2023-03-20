@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 
-import { AutoresController } from './autores/autores.controller';
+import { AutoresModule } from './autores/autores.module';
 
 @Module({
-  imports: [],
-  controllers: [AutoresController],
+  imports: [AutoresModule],
+  controllers: [],
   providers: [],
 })
 export class AppModule {}
