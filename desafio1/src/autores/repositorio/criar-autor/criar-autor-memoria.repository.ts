@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
-
-import { Autor } from '../autor.entity';
+import { Autor } from 'src/autores/autor.entity';
 
 @Injectable()
 export class CriarAutorEmMemoriaRepository {
