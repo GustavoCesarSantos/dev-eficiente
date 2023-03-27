@@ -1,20 +1,18 @@
-import { IsEmail, IsString, Max, Min } from 'class-validator';
+import { IsEmail, IsString } from 'class-validator';
 
 import { Autor } from '../autor.entity';
+import { EmailInUse } from '../customValidation/email-in-use';
 
 export class CriarAutorDTO {
   @IsString()
-  @Max(50)
-  @Min(3)
   nome: string;
 
   @IsString()
   @IsEmail()
+  @EmailInUse()
   email: string;
 
   @IsString()
-  @Max(400)
-  @Min(3)
   descricao: string;
 
   public toModel(): Autor {
