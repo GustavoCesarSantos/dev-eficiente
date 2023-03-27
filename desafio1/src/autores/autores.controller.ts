@@ -1,12 +1,12 @@
 import { Body, Controller, Post } from '@nestjs/common';
 
 import { Autor } from './autor.entity';
-import { CriarAutorService } from './casos-de-uso/criar-autor/criar-autor.service';
 import { CriarAutorDTO } from './dto/autores.dto';
+import { CriarAutorMemoriaRepository } from './repositorio/criar-autor/criar-autor-memoria.repository/criar-autor-memoria.repository';
 
 @Controller('autores')
 export class AutoresController {
-  constructor(private criarAutorService: CriarAutorService) {}
+  constructor(private criarAutorRepository: CriarAutorMemoriaRepository) {}
 
   @Post()
   public async criarAutor(
@@ -14,7 +14,7 @@ export class AutoresController {
   ): Promise<Autor> {
     try {
       const newAutor = criarAutorDTO.toModel();
-      return await this.criarAutorService.execute(newAutor);
+      return await this.criarAutorRepository.criar(newAutor);
     } catch (error) {
       return error;
     }
