@@ -16,4 +16,8 @@ export class Autor {
     this.descricao = props.descricao;
     this.criadoEm = new Date();
   }
+
+  getEmail(): string {
+    return this.email;
+  }
 }
