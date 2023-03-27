@@ -1,10 +1,27 @@
-import { z } from 'zod';
+import { IsEmail, IsString, Max, Min } from 'class-validator';
 
-export const CriarAutorSchema = z.object({
-  nome: z.string().min(3).max(50),
-  email: z.string().email(),
-  descricao: z.string().min(3).max(400),
-  criadoEm: z.date().default(new Date()),
-});
+import { Autor } from '../autor.entity';
 
-export type CriarAutorDTO = z.infer<typeof CriarAutorSchema>;
+export class CriarAutorDTO {
+  @IsString()
+  @Max(50)
+  @Min(3)
+  nome: string;
+
+  @IsString()
+  @IsEmail()
+  email: string;
+
+  @IsString()
+  @Max(400)
+  @Min(3)
+  descricao: string;
+
+  public toModel(): Autor {
+    return new Autor({
+      nome: this.nome,
+      email: this.email,
+      descricao: this.descricao,
+    });
+  }
+}
