@@ -1,4 +1,5 @@
 import { registerDecorator, ValidationOptions } from 'class-validator';
+
 import { EmailInUseRule } from './rules/email-in-use.rule';
 
 export function EmailInUse(validationOptions?: ValidationOptions) {

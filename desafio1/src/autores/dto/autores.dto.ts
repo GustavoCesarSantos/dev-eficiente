@@ -1,10 +1,11 @@
-import { IsEmail, IsString } from 'class-validator';
+import { IsEmail, IsString, Length } from 'class-validator';
 
 import { Autor } from '../autor.entity';
 import { EmailInUse } from '../customValidation/email-in-use';
 
 export class CriarAutorDTO {
   @IsString()
+  @Length(3, 50)
   nome: string;
 
   @IsString()
@@ -13,6 +14,7 @@ export class CriarAutorDTO {
   email: string;
 
   @IsString()
+  @Length(2, 400)
   descricao: string;
 
   public toModel(): Autor {
