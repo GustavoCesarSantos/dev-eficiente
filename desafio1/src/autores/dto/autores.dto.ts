@@ -1,7 +1,7 @@
 import { IsEmail, IsNotEmpty, IsString, Length } from 'class-validator';
+import { IsUnique } from '../../customValidations/is-unique';
 
 import { Autor } from '../autor.entity';
-import { EmailInUse } from '../customValidation/email-in-use';
 
 export class CriarAutorDTO {
   @IsString()
@@ -12,7 +12,7 @@ export class CriarAutorDTO {
   @IsString()
   @IsNotEmpty()
   @IsEmail()
-  @EmailInUse()
+  @IsUnique('Autor')
   email: string;
 
   @IsString()

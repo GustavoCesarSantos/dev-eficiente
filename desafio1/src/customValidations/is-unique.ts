@@ -1,15 +1,16 @@
 import { registerDecorator, ValidationOptions } from 'class-validator';
 
-import { NameInUseRule } from './rules/name-in-use.rule';
+import { IsUniqueRule } from './rules/is-unique.rule';
 
-export function NameInUse(validationOptions?: ValidationOptions) {
+export function IsUnique(type: string, validationOptions?: ValidationOptions) {
   return function (object: any, propertyName: string) {
     registerDecorator({
-      name: 'NameInUse',
+      name: 'IsUnique',
       target: object.constructor,
       propertyName: propertyName,
+      constraints: [type],
       options: validationOptions,
-      validator: NameInUseRule,
+      validator: IsUniqueRule,
     });
   };
 }

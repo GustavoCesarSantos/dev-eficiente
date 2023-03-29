@@ -6,6 +6,7 @@ import { EncontrarCategoriaPeloNomeMemoriaRepository } from './repositorios/enco
 
 @Module({
   imports: [],
+  exports: [EncontrarCategoriaPeloNomeMemoriaRepository],
   controllers: [CategoriasController],
   providers: [
     CriarCategoriaMemoriaRepository,

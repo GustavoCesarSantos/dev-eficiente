@@ -1,13 +1,13 @@
 import { IsNotEmpty, IsString, Length } from 'class-validator';
 
 import { Categoria } from '../categoria.entity';
-import { NameInUse } from '../customValidation/name-in-use';
+import { IsUnique } from '../../customValidations/is-unique';
 
 export class CriarCategoriaDTO {
   @IsString()
   @IsNotEmpty()
   @Length(3, 50)
-  @NameInUse()
+  @IsUnique('Categoria')
   nome: string;
 
   public toModel(): Categoria {
