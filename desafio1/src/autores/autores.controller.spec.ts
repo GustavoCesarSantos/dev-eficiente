@@ -10,10 +10,7 @@ describe('AutoresController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [AutoresController],
-      providers: [
-        CriarAutorMemoriaRepository,
-        EncontrarAutorPeloEmailRepository,
-      ],
+      providers: [CriarAutorMemoriaRepository],
     }).compile();
 
     controller = module.get<AutoresController>(AutoresController);

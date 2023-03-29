@@ -6,15 +6,17 @@ import { CriarAutorMemoriaRepository } from './repositorio/criar-autor/criar-aut
 
 @Controller('autores')
 export class AutoresController {
-  constructor(private criarAutorRepository: CriarAutorMemoriaRepository) {}
+  constructor(
+    private readonly criarAutorRepository: CriarAutorMemoriaRepository,
+  ) {}
 
   @Post()
   public async criarAutor(
     @Body() criarAutorDTO: CriarAutorDTO,
   ): Promise<Autor> {
     try {
-      const newAutor = criarAutorDTO.toModel();
-      return await this.criarAutorRepository.criar(newAutor);
+      const novoAutor = criarAutorDTO.toModel();
+      return await this.criarAutorRepository.criar(novoAutor);
     } catch (error) {
       return error;
     }
