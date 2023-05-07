@@ -4,6 +4,7 @@ import {
   IsNotEmpty,
   IsNumber,
   IsString,
+  IsUUID,
   Length,
   Min,
 } from 'class-validator';
@@ -54,4 +55,9 @@ export class CriarLivroDTO {
   public toModel(): Livro {
     return new Livro({ ...this });
   }
+}
+
+export class EncontrarLivroDTO {
+  @IsUUID()
+  id: string;
 }
