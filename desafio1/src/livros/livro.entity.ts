@@ -1,3 +1,5 @@
+import { randomUUID } from 'crypto';
+
 type LivroConstructor = {
   titulo: string;
   resumo: string;
@@ -10,6 +12,7 @@ type LivroConstructor = {
   autor: string;
 };
 export class Livro {
+  private readonly id: string;
   private readonly titulo: string;
   private readonly resumo: string;
   private readonly sumario: string;
@@ -21,6 +24,7 @@ export class Livro {
   private readonly autor: string;
 
   constructor(props: LivroConstructor) {
+    this.id = randomUUID();
     this.titulo = props.titulo;
     this.resumo = props.resumo;
     this.sumario = props.sumario;
@@ -30,5 +34,13 @@ export class Livro {
     this.dataPublicacao = props.dataPublicacao;
     this.categoria = props.categoria;
     this.autor = props.autor;
+  }
+
+  getId(): string {
+    return this.id;
+  }
+
+  getTitulo(): string {
+    return this.titulo;
   }
 }
