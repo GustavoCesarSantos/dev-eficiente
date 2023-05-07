@@ -21,7 +21,6 @@ export class IsUniqueRule implements ValidatorConstraintInterface {
   async validate(value: string, args: ValidationArguments) {
     try {
       const [type] = args.constraints;
-      if (type === 'teste') return false;
       let result: any;
       switch (type) {
         case 'Autor':
