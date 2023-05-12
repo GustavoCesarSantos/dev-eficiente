@@ -1,5 +1,5 @@
 import {
-  IsDate,
+  IsDateString,
   IsInt,
   IsNotEmpty,
   IsNumber,
@@ -12,10 +12,10 @@ import { IsUnique } from '../../customValidations/is-unique';
 import { IsFuture } from '../../customValidations/is-future';
 import { Livro } from '../livro.entity';
 
-export class CriarLivroDTO {
+export class CriarLivroRequest {
   @IsString()
   @IsNotEmpty()
-  @IsUnique('Livro')
+  @IsUnique('Livro', 'Titulo')
   titulo: string;
 
   @IsString()
@@ -32,32 +32,47 @@ export class CriarLivroDTO {
   preco: number;
 
   @IsInt()
-  @IsNotEmpty()
   @Min(100)
   numeroPaginas: number;
 
-  @IsInt()
+  @IsString()
   @IsNotEmpty()
-  isbn: number;
+  @IsUnique('Livro', 'Isbn')
+  isbn: string;
 
-  @IsDate()
+  @IsDateString()
   @IsFuture()
-  dataPublicacao: Date;
+  dataPublicacao: string;
 
-  @IsString()
+  @IsUUID()
   @IsNotEmpty()
-  categoria: string;
+  idCategoria: string;
 
-  @IsString()
+  @IsUUID()
   @IsNotEmpty()
-  autor: string;
+  idAutor: string;
 
   public toModel(): Livro {
     return new Livro({ ...this });
   }
 }
 
-export class EncontrarLivroDTO {
+export class ListarLivrosResponse {
+  @IsUUID()
+  @IsNotEmpty()
+  id: string;
+
+  @IsString()
+  @IsNotEmpty()
+  titulo: string;
+
+  constructor(livro: Livro) {
+    this.id = livro.getId();
+    this.titulo = livro.getTitulo();
+  }
+}
+
+export class EncontrarLivroRequest {
   @IsUUID()
   id: string;
 }

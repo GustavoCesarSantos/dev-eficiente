@@ -1,16 +1,20 @@
-type props = {
+import { randomUUID } from 'crypto';
+
+type AutorConstructor = {
   nome: string;
   email: string;
   descricao: string;
 };
 
 export class Autor {
+  private readonly id: string;
   private readonly nome: string;
   private readonly email: string;
   private readonly descricao: string;
   private readonly criadoEm: Date;
 
-  constructor(props: props) {
+  constructor(props: AutorConstructor) {
+    this.id = randomUUID();
     this.nome = props.nome;
     this.email = props.email;
     this.descricao = props.descricao;

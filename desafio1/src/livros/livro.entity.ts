@@ -6,10 +6,10 @@ type LivroConstructor = {
   sumario: string;
   preco: number;
   numeroPaginas: number;
-  isbn: number;
-  dataPublicacao: Date;
-  categoria: string;
-  autor: string;
+  isbn: string;
+  dataPublicacao: string;
+  idCategoria: string;
+  idAutor: string;
 };
 export class Livro {
   private readonly id: string;
@@ -18,10 +18,10 @@ export class Livro {
   private readonly sumario: string;
   private readonly preco: number;
   private readonly numeroPaginas: number;
-  private readonly isbn: number;
-  private readonly dataPublicacao: Date;
-  private readonly categoria: string;
-  private readonly autor: string;
+  private readonly isbn: string;
+  private readonly dataPublicacao: string;
+  private readonly idCategoria: string;
+  private readonly idAutor: string;
 
   constructor(props: LivroConstructor) {
     this.id = randomUUID();
@@ -32,8 +32,8 @@ export class Livro {
     this.numeroPaginas = props.numeroPaginas;
     this.isbn = props.isbn;
     this.dataPublicacao = props.dataPublicacao;
-    this.categoria = props.categoria;
-    this.autor = props.autor;
+    this.idCategoria = props.idCategoria;
+    this.idAutor = props.idAutor;
   }
 
   getId(): string {
@@ -42,5 +42,9 @@ export class Livro {
 
   getTitulo(): string {
     return this.titulo;
+  }
+
+  getIsbn(): string {
+    return this.isbn;
   }
 }
