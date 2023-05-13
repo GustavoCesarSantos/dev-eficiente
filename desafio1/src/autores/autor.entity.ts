@@ -21,7 +21,19 @@ export class Autor {
     this.criadoEm = new Date();
   }
 
+  getId(): string {
+    return this.id;
+  }
+
+  getNome(): string {
+    return this.nome;
+  }
+
   getEmail(): string {
     return this.email;
+  }
+
+  getDescricao(): string {
+    return this.descricao;
   }
 }

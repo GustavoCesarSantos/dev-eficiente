@@ -44,7 +44,35 @@ export class Livro {
     return this.titulo;
   }
 
+  getResumo(): string {
+    return this.resumo;
+  }
+
+  getSumario(): string {
+    return this.sumario;
+  }
+
+  getPreco(): number {
+    return this.preco;
+  }
+
+  getNumeroPaginas(): number {
+    return this.numeroPaginas;
+  }
+
   getIsbn(): string {
     return this.isbn;
+  }
+
+  getDataPublicacao(): string {
+    return this.dataPublicacao;
+  }
+
+  getIdCategoria(): string {
+    return this.idCategoria;
+  }
+
+  getIdAutor(): string {
+    return this.idAutor;
   }
 }

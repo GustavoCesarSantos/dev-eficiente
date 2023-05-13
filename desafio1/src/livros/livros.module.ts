@@ -8,6 +8,8 @@ import { ListarLivrosMemoriaRepository } from './repositorios/listar-livros/list
 import { EncontrarLivroMemoriaRepository } from './repositorios/encontrar-livro/encontrar-livro-memoria.repository/encontrar-livro-memoria.repository';
 import { EncontrarLivroPeloTituloMemoriaRepository } from './repositorios/encontrar-livro-pelo-titulo-memoria.repository';
 import { EncontrarLivroPeloIsbnMemoriaRepository } from './repositorios/encontrar-livro-pelo-isbn-memoria.repository';
+import { EncontrarCategoriaMemoriaRepository } from '../categorias/repositorios/encontrar-categoria-memoria.repository';
+import { EncontrarAutorMemoriaRepository } from '../autores/repositorio/encontrar-autor-memoria.repository';
 
 @Module({
   imports: [],
@@ -26,6 +28,8 @@ import { EncontrarLivroPeloIsbnMemoriaRepository } from './repositorios/encontra
     EncontrarLivroMemoriaRepository,
     EncontrarLivroPeloTituloMemoriaRepository,
     EncontrarLivroPeloIsbnMemoriaRepository,
+    EncontrarAutorMemoriaRepository,
+    EncontrarCategoriaMemoriaRepository,
   ],
 })
 export class LivrosModule {}

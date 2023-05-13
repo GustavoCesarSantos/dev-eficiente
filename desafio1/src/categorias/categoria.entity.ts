@@ -9,6 +9,10 @@ export class Categoria {
     this.nome = nome;
   }
 
+  getId(): string {
+    return this.id;
+  }
+
   getNome(): string {
     return this.nome;
   }
