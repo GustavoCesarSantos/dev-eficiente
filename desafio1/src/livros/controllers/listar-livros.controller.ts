@@ -15,7 +15,7 @@ export class ListarLivrosController {
       const livros = await this.listarLivrosMemoriaRepository.listar();
       return livros.map((livro) => new ListarLivrosResponse(livro));
     } catch (error) {
-      return error;
+      throw error;
     }
   }
 }

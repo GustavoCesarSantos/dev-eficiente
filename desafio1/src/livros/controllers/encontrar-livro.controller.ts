@@ -16,10 +16,10 @@ export class EncontrarLivroController {
   ): Promise<Livro> {
     try {
       const livro = this.encontrarLivroMemoriaRepository.encontrar(params.id);
-      if (!livro) throw new NotFoundException();
+      if (!livro) throw new NotFoundException('Livro não encontrado.');
       return livro;
     } catch (error) {
-      return error;
+      throw error;
     }
   }
 }

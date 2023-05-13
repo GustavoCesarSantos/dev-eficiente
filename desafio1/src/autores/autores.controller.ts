@@ -18,7 +18,7 @@ export class AutoresController {
       const novoAutor = criarAutorDTO.toModel();
       return await this.criarAutorRepository.criar(novoAutor);
     } catch (error) {
-      return error;
+      throw error;
     }
   }
 }

@@ -22,12 +22,12 @@ export class CriarLivroController {
       const autor = await this.encontrarAutorMemoriaRepository.encontrar(
         novoLivro.getIdAutor(),
       );
-      if (!autor) throw new NotFoundException();
+      if (!autor) throw new NotFoundException('Autor não encontrado.');
       const categoria =
         await this.encontrarCategoriaMemoriaRepository.encontrar(
           novoLivro.getIdCategoria(),
         );
-      if (!categoria) throw new NotFoundException();
+      if (!categoria) throw new NotFoundException('Categoria não encontrada.');
       const livro = this.criarLivroMemoriaRepository.criar(novoLivro);
       const criarLivroResponse = new CriarLivroResponse(
         livro,
@@ -36,7 +36,7 @@ export class CriarLivroController {
       );
       return criarLivroResponse;
     } catch (error) {
-      return error;
+      throw error;
     }
   }
 }

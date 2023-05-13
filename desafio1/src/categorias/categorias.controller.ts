@@ -18,7 +18,7 @@ export class CategoriasController {
       const novaCategoria = criarCategoriaDTO.toModel();
       return await this.criarCategoriaMemoriaRepository.criar(novaCategoria);
     } catch (error) {
-      return error;
+      throw error;
     }
   }
 }
