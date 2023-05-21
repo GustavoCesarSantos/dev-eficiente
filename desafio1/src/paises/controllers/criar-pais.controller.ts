@@ -1,6 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
 
-import { CriarPaisRequest } from '../dto/pais.dto';
+import { CriarPaisRequest } from '../dto/paises.dto';
 import { Pais } from '../pais.entity';
 import { CriarPaisMemoriaRepository } from '../repositorios/criar-pais.memoria.repository';
 
