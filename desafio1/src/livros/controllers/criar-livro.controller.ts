@@ -14,7 +14,7 @@ export class CriarLivroController {
   ) {}
 
   @Post()
-  public async criarLivo(
+  public async criarLivro(
     @Body() criarLivroDTO: CriarLivroRequest,
   ): Promise<CriarLivroResponse> {
     try {
