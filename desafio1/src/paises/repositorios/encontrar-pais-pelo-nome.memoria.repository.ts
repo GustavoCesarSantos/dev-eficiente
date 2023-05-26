@@ -1,5 +1,8 @@
+import { Injectable } from '@nestjs/common';
+
 import { Pais } from '../pais.entity';
 
+@Injectable()
 export class EncontrarPaisPeloNomeMemoriaRepository {
   private db: Pais[] = [];
 

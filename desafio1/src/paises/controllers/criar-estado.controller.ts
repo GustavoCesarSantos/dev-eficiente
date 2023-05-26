@@ -8,11 +8,13 @@ import {
 
 import { CriarEstadoRequest } from '../dto/estados.dto';
 import { Estado } from '../estado.entity';
+import { CriarEstadoMemoriaRepository } from '../repositorios/criar-estado.memoria.repository';
+import { EncontrarPaisPeloIdMemoriaRepository } from '../repositorios/encontrar-pais-pelo-id.memoria.repository';
 
 @Controller('paises/:idPais/estados')
 export class CriarEstadoController {
   constructor(
-    private readonly encontrarPaisPeloIdRepository: EncontarPaisPeloIdMemoriaRepository,
+    private readonly encontrarPaisPeloIdRepository: EncontrarPaisPeloIdMemoriaRepository,
     private readonly criarEstadoRepository: CriarEstadoMemoriaRepository,
   ) {}
 

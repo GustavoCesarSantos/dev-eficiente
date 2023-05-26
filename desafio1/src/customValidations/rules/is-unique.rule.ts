@@ -10,6 +10,7 @@ import { EncontrarCategoriaPeloNomeMemoriaRepository } from '../../categorias/re
 import { EncontrarLivroPeloTituloMemoriaRepository } from '../../livros/repositorios/encontrar-livro-pelo-titulo-memoria.repository';
 import { EncontrarLivroPeloIsbnMemoriaRepository } from '../../livros/repositorios/encontrar-livro-pelo-isbn-memoria.repository';
 import { EncontrarPaisPeloNomeMemoriaRepository } from '../../paises/repositorios/encontrar-pais-pelo-nome.memoria.repository';
+import { EncontrarEstadoPeloNomeMemoriaRepository } from '../../paises/repositorios/encontrar-estado-pelo-nome.memoria.repository';
 
 @ValidatorConstraint({ name: 'IsUnique', async: true })
 @Injectable()
@@ -22,6 +23,7 @@ export class IsUniqueRule implements ValidatorConstraintInterface {
     private readonly encontrarLivroPeloTituloRepository: EncontrarLivroPeloTituloMemoriaRepository,
     private readonly encontrarLivroPeloIsbnRepository: EncontrarLivroPeloIsbnMemoriaRepository,
     private readonly encontrarPaisRepository: EncontrarPaisPeloNomeMemoriaRepository,
+    private readonly encontrarEstadoRepository: EncontrarEstadoPeloNomeMemoriaRepository,
   ) {}
 
   async validate(value: string, args: ValidationArguments) {
@@ -56,6 +58,10 @@ export class IsUniqueRule implements ValidatorConstraintInterface {
           return false;
         case 'Pais':
           result = await this.encontrarPaisRepository.encontrar(value);
+          this.errorMessage = 'Nome já utilizado.';
+          break;
+        case 'Estado':
+          result = await this.encontrarEstadoRepository.encontrar(value);
           this.errorMessage = 'Nome já utilizado.';
           break;
         default:

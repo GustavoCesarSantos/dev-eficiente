@@ -8,6 +8,10 @@ export class Pais {
     (this.id = randomUUID()), (this.nome = nome);
   }
 
+  public getId(): string {
+    return this.id;
+  }
+
   public getNome(): string {
     return this.nome;
   }

@@ -4,7 +4,7 @@ import { CriarPaisRequest } from '../dto/paises.dto';
 import { Pais } from '../pais.entity';
 import { CriarPaisMemoriaRepository } from '../repositorios/criar-pais.memoria.repository';
 
-@Controller('pais')
+@Controller('paises')
 export class CriarPaisController {
   constructor(private criarPaisRepository: CriarPaisMemoriaRepository) {}
 

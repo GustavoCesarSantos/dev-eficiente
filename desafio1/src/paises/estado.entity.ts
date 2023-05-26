@@ -8,4 +8,12 @@ export class Estado {
   constructor(nome: string, idPais: string) {
     (this.id = randomUUID()), (this.nome = nome), (this.idPais = idPais);
   }
+
+  public getId() {
+    return this.id;
+  }
+
+  public getNome() {
+    return this.nome;
+  }
 }
