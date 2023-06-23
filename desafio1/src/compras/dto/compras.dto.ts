@@ -1,6 +1,38 @@
-import { IsEmail, IsInt, IsNotEmpty, IsString } from 'class-validator';
+import {
+  ArrayMinSize,
+  IsArray,
+  IsEmail,
+  IsInt,
+  IsNotEmpty,
+  IsString,
+  Min,
+  ValidateNested,
+} from 'class-validator';
 
 import { IsCpfOrCnpj } from '../../customValidations/is-cpf-or-cnpj';
+
+class ItemCarrinho {
+  @IsNotEmpty()
+  @IsInt()
+  idLivro: number;
+
+  @IsNotEmpty()
+  @IsInt()
+  @Min(1)
+  quantidade: number;
+}
+
+class Carrinho {
+  @IsNotEmpty()
+  @IsInt()
+  @Min(1)
+  total: number;
+
+  @IsArray()
+  @ArrayMinSize(1)
+  @ValidateNested({ each: true })
+  itens: ItemCarrinho[];
+}
 
 export class CriarCompraRequest {
   @IsNotEmpty()
@@ -47,4 +79,7 @@ export class CriarCompraRequest {
   @IsNotEmpty()
   @IsInt()
   cep: number;
+
+  @ValidateNested()
+  carrinho: Carrinho;
 }
