@@ -16,4 +16,8 @@ export class Estado {
   public getNome() {
     return this.nome;
   }
+
+  public getIdPais() {
+    return this.idPais;
+  }
 }

@@ -10,6 +10,7 @@ import {
 } from 'class-validator';
 
 import { IsCpfOrCnpj } from '../../customValidations/is-cpf-or-cnpj';
+import { isValidState } from '../../utils/IsValidState';
 
 class ItemCarrinho {
   @IsNotEmpty()
@@ -68,7 +69,6 @@ export class CriarCompraRequest {
   @IsString()
   idPais: string;
 
-  @IsNotEmpty()
   @IsString()
   idEstado: string;
 
@@ -82,4 +82,8 @@ export class CriarCompraRequest {
 
   @ValidateNested()
   carrinho: Carrinho;
+
+  public async toModel(): Promise<any> {
+    await isValidState(this.idPais, this.idEstado);
+  }
 }
