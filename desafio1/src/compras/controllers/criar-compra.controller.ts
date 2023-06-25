@@ -14,7 +14,7 @@ export class CriarCompraController {
     @Body() criarCompraDTO: CriarCompraRequest,
   ): Promise<any> {
     try {
-      const novaCompra = criarCompraDTO.toModel();
+      const novaCompra = await criarCompraDTO.toModel();
       await this.criarCompraMemoriaRepository.criar(novaCompra);
     } catch (error) {
       throw error;

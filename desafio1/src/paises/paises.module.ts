@@ -7,12 +7,14 @@ import { EncontrarPaisPeloIdMemoriaRepository } from './repositorios/encontrar-p
 import { EncontrarPaisPeloNomeMemoriaRepository } from './repositorios/encontrar-pais-pelo-nome.memoria.repository';
 import { CriarEstadoMemoriaRepository } from './repositorios/criar-estado.memoria.repository';
 import { EncontrarEstadoPeloNomeMemoriaRepository } from './repositorios/encontrar-estado-pelo-nome.memoria.repository';
+import { EncontrarEstadosPeloIdPaisMemoriaRepository } from './repositorios/encontrar-estados-pelo-id-pais.memoria.repository';
 
 @Module({
   imports: [],
   exports: [
     EncontrarPaisPeloNomeMemoriaRepository,
     EncontrarEstadoPeloNomeMemoriaRepository,
+    EncontrarEstadosPeloIdPaisMemoriaRepository,
   ],
   controllers: [CriarPaisController, CriarEstadoController],
   providers: [
@@ -21,6 +23,7 @@ import { EncontrarEstadoPeloNomeMemoriaRepository } from './repositorios/encontr
     EncontrarPaisPeloNomeMemoriaRepository,
     CriarEstadoMemoriaRepository,
     EncontrarEstadoPeloNomeMemoriaRepository,
+    EncontrarEstadosPeloIdPaisMemoriaRepository,
   ],
 })
 export class PaisesModule {}

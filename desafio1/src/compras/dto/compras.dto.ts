@@ -11,6 +11,7 @@ import {
 
 import { IsCpfOrCnpj } from '../../customValidations/is-cpf-or-cnpj';
 import { isValidState } from '../../utils/IsValidState';
+import { Compra } from '../compra.entity';
 
 class ItemCarrinho {
   @IsNotEmpty()
@@ -83,7 +84,8 @@ export class CriarCompraRequest {
   @ValidateNested()
   carrinho: Carrinho;
 
-  public async toModel(): Promise<any> {
+  public async toModel(): Promise<Compra> {
     await isValidState(this.idPais, this.idEstado);
+    return new Compra({ ...this });
   }
 }
