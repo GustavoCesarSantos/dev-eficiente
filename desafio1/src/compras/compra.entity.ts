@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto';
 
 type ItemCarrinho = {
-  idLivro: number;
+  idLivro: string;
   quantidade: number;
 };
 
@@ -56,5 +56,9 @@ export class Compra {
     this.cep = props.cep;
     this.status = props.status ?? 'iniciada';
     this.carrinho = props.carrinho;
+  }
+
+  public getCarrinho() {
+    return this.carrinho;
   }
 }

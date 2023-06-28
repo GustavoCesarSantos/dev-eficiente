@@ -10,12 +10,14 @@ import { EncontrarLivroPeloTituloMemoriaRepository } from './repositorios/encont
 import { EncontrarLivroPeloIsbnMemoriaRepository } from './repositorios/encontrar-livro-pelo-isbn-memoria.repository';
 import { EncontrarCategoriaMemoriaRepository } from '../categorias/repositorios/encontrar-categoria-memoria.repository';
 import { EncontrarAutorMemoriaRepository } from '../autores/repositorio/encontrar-autor-memoria.repository';
+import { ListarLivrosPelosIdsMemoriaRepository } from './repositorios/listar-livros-pelos-ids-memoria.repository';
 
 @Module({
   imports: [],
   exports: [
     EncontrarLivroPeloTituloMemoriaRepository,
     EncontrarLivroPeloIsbnMemoriaRepository,
+    ListarLivrosPelosIdsMemoriaRepository,
   ],
   controllers: [
     CriarLivroController,
@@ -30,6 +32,7 @@ import { EncontrarAutorMemoriaRepository } from '../autores/repositorio/encontra
     EncontrarLivroPeloIsbnMemoriaRepository,
     EncontrarAutorMemoriaRepository,
     EncontrarCategoriaMemoriaRepository,
+    ListarLivrosPelosIdsMemoriaRepository,
   ],
 })
 export class LivrosModule {}

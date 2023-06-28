@@ -15,8 +15,8 @@ import { Compra } from '../compra.entity';
 
 class ItemCarrinho {
   @IsNotEmpty()
-  @IsInt()
-  idLivro: number;
+  @IsString()
+  idLivro: string;
 
   @IsNotEmpty()
   @IsInt()

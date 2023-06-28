@@ -1,12 +1,14 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Post } from '@nestjs/common';
 
 import { CriarCompraMemoriaRepository } from '../repositorios/criar-compra.memoria.repository';
 import { CriarCompraRequest } from '../dto/compras.dto';
+import { ValidarTotalCompraService } from '../services/validar-total-compra.service';
 
 @Controller('compras')
 export class CriarCompraController {
   constructor(
     private readonly criarCompraMemoriaRepository: CriarCompraMemoriaRepository,
+    private readonly validarTotalCompraService: ValidarTotalCompraService,
   ) {}
 
   @Post()
@@ -15,6 +17,8 @@ export class CriarCompraController {
   ): Promise<any> {
     try {
       const novaCompra = await criarCompraDTO.toModel();
+      const isValid = await this.validarTotalCompraService.execute(novaCompra);
+      if (!isValid) return new BadRequestException('Teste');
       await this.criarCompraMemoriaRepository.criar(novaCompra);
     } catch (error) {
       throw error;
