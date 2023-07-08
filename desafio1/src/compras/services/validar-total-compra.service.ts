@@ -11,25 +11,22 @@ export class ValidarTotalCompraService {
 
   public async execute(compra: Compra): Promise<boolean> {
     const carrinho = compra.getCarrinho();
-    const ids = carrinho.itens.map((item) => item.idLivro);
-    const livros = await this.listarLivrosPelosIdsMemoriaRepository.listar(ids);
-    const total = livros
-      .map((livro) => {
-        const item = carrinho.itens.find(
-          (item) => item.idLivro === livro.getId(),
-        );
-        if (item) {
-          return {
-            preco: livro.getPreco(),
-            qtd: item.quantidade,
-          };
-        }
-        throw new Error('Livro não encontrado');
-      })
-      .reduce((total, livro) => {
-        total += livro.preco * livro.qtd;
-        return total;
-      }, 0);
+    let quantidade: Record<string, number> = {};
+    const idLivros: string[] = [];
+    carrinho.itens.forEach((item) => {
+      quantidade = {
+        ...quantidade,
+        [item.idLivro]: item.quantidade,
+      };
+      idLivros.push(item.idLivro);
+    });
+    const livrosDB = await this.listarLivrosPelosIdsMemoriaRepository.listar(
+      idLivros,
+    );
+    const total = livrosDB.reduce((total, livro) => {
+      total += livro.getPreco() * quantidade[livro.getId()];
+      return total;
+    }, 0);
     return carrinho.total === total;
   }
 }
