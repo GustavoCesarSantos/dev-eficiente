@@ -13,8 +13,23 @@ export class ValidarTotalCompraService {
     const carrinho = compra.getCarrinho();
     const ids = carrinho.itens.map((item) => item.idLivro);
     const livros = await this.listarLivrosPelosIdsMemoriaRepository.listar(ids);
-    let total = 0;
-    livros.forEach((livro) => (total += livro.getPreco()));
+    const total = livros
+      .map((livro) => {
+        const item = carrinho.itens.find(
+          (item) => item.idLivro === livro.getId(),
+        );
+        if (item) {
+          return {
+            preco: livro.getPreco(),
+            qtd: item.quantidade,
+          };
+        }
+        throw new Error('Livro não encontrado');
+      })
+      .reduce((total, livro) => {
+        total += livro.preco * livro.qtd;
+        return total;
+      }, 0);
     return carrinho.total === total;
   }
 }

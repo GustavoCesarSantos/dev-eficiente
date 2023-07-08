@@ -5,7 +5,10 @@ import { EncontrarEstadosPeloIdPaisMemoriaRepository } from '../paises/repositor
 const encontrarEstadosPeloIdPaisRepositorio =
   new EncontrarEstadosPeloIdPaisMemoriaRepository();
 
-export const isValidState = async (idPais: string, idEstado: string) => {
+export const estadoPertenceAoPaís = async (
+  idPais: string,
+  idEstado: string,
+): Promise<void> => {
   try {
     const estados = await encontrarEstadosPeloIdPaisRepositorio.encontrar(
       idPais,

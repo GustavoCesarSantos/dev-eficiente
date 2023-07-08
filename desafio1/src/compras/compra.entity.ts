@@ -1,5 +1,7 @@
 import { randomUUID } from 'node:crypto';
 
+import { estadoPertenceAoPaís } from '../utils/estadoPertenceAoPaís';
+
 type ItemCarrinho = {
   idLivro: string;
   quantidade: number;
@@ -19,10 +21,8 @@ type CompraConstructor = {
   complemento: string;
   cidade: string;
   idPais: string;
-  idEstado: string;
   telefone: number;
   cep: number;
-  status?: 'iniciada';
   carrinho: Carrinho;
 };
 export class Compra {
@@ -35,10 +35,10 @@ export class Compra {
   private complemento: string;
   private cidade: string;
   private idPais: string;
-  private idEstado: string;
+  private idEstado?: string;
   private telefone: number;
   private cep: number;
-  private status: 'iniciada';
+  private status?: string;
   private carrinho: Carrinho;
 
   constructor(props: CompraConstructor) {
@@ -51,14 +51,24 @@ export class Compra {
     this.complemento = props.complemento;
     this.cidade = props.cidade;
     this.idPais = props.idPais;
-    this.idEstado = props.idEstado;
     this.telefone = props.telefone;
     this.cep = props.cep;
-    this.status = props.status ?? 'iniciada';
     this.carrinho = props.carrinho;
   }
 
   public getCarrinho() {
     return this.carrinho;
+  }
+
+  public async setIdEstado(idEstado: string) {
+    if (!this.idPais) {
+      throw new Error('Não é possivel atribuir um estado sem um id de país');
+    }
+    await estadoPertenceAoPaís(this.idPais, idEstado);
+    this.idEstado = idEstado;
+  }
+
+  public setStatus(status: string) {
+    this.status = status;
   }
 }

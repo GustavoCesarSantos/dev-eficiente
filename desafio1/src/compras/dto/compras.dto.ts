@@ -10,7 +10,6 @@ import {
 } from 'class-validator';
 
 import { IsCpfOrCnpj } from '../../customValidations/is-cpf-or-cnpj';
-import { isValidState } from '../../utils/IsValidState';
 import { Compra } from '../compra.entity';
 
 class ItemCarrinho {
@@ -85,7 +84,8 @@ export class CriarCompraRequest {
   carrinho: Carrinho;
 
   public async toModel(): Promise<Compra> {
-    await isValidState(this.idPais, this.idEstado);
-    return new Compra({ ...this });
+    const compra = new Compra({ ...this });
+    if (this.idEstado) await compra.setIdEstado(this.idEstado);
+    return compra;
   }
 }
