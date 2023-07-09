@@ -8,6 +8,7 @@ import {
   Min,
   ValidateNested,
 } from 'class-validator';
+import { Type } from 'class-transformer';
 
 import { IsCpfOrCnpj } from '../../customValidations/is-cpf-or-cnpj';
 import { Compra } from '../compra.entity';
@@ -32,6 +33,7 @@ class Carrinho {
   @IsArray()
   @ArrayMinSize(1)
   @ValidateNested({ each: true })
+  @Type(() => ItemCarrinho)
   itens: ItemCarrinho[];
 }
 
@@ -82,6 +84,7 @@ export class CriarCompraRequest {
 
   @IsNotEmpty()
   @ValidateNested()
+  @Type(() => Carrinho)
   carrinho: Carrinho;
 
   public async toModel(): Promise<Compra> {
