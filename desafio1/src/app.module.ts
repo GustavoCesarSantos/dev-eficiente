@@ -3,10 +3,11 @@ import { Module } from '@nestjs/common';
 import { AutoresModule } from './autores/autores.module';
 import { CategoriasModule } from './categorias/categorias.module';
 import { LivrosModule } from './livros/livros.module';
-import { IsUniqueRule } from './customValidations/rules/is-unique.rule';
-import { IsFutureRule } from './customValidations/rules/is-future.rule';
 import { PaisesModule } from './paises/paises.module';
 import { ComprasModule } from './compras/compras.module';
+import { IsUniqueRule } from './customValidations/rules/is-unique.rule';
+import { IsFutureRule } from './customValidations/rules/is-future.rule';
+import { IsCpfOrCnpjRule } from './customValidations/rules/is-cpf-or-cnpj.rule';
 
 @Module({
   imports: [
@@ -17,6 +18,6 @@ import { ComprasModule } from './compras/compras.module';
     ComprasModule,
   ],
   controllers: [],
-  providers: [IsUniqueRule, IsFutureRule],
+  providers: [IsUniqueRule, IsFutureRule, IsCpfOrCnpjRule],
 })
 export class AppModule {}

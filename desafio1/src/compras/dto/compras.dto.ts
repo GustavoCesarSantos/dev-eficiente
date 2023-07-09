@@ -80,6 +80,7 @@ export class CriarCompraRequest {
   @IsInt()
   cep: number;
 
+  @IsNotEmpty()
   @ValidateNested()
   carrinho: Carrinho;
 
