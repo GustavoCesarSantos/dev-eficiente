@@ -11,6 +11,7 @@ import { EncontrarLivroPeloTituloMemoriaRepository } from '../../livros/reposito
 import { EncontrarLivroPeloIsbnMemoriaRepository } from '../../livros/repositorios/encontrar-livro-pelo-isbn-memoria.repository';
 import { EncontrarPaisPeloNomeMemoriaRepository } from '../../paises/repositorios/encontrar-pais-pelo-nome.memoria.repository';
 import { EncontrarEstadoPeloNomeMemoriaRepository } from '../../paises/repositorios/encontrar-estado-pelo-nome.memoria.repository';
+import { EncontrarCupomDeDescontoPeloCodigoMemoriaRepository } from '../../cupons-de-desconto/repositorios/encontrar-cupom-de-desconto-pelo-codigo-memoria.repository';
 
 @ValidatorConstraint({ name: 'IsUnique', async: true })
 @Injectable()
@@ -24,6 +25,7 @@ export class IsUniqueRule implements ValidatorConstraintInterface {
     private readonly encontrarLivroPeloIsbnRepository: EncontrarLivroPeloIsbnMemoriaRepository,
     private readonly encontrarPaisRepository: EncontrarPaisPeloNomeMemoriaRepository,
     private readonly encontrarEstadoRepository: EncontrarEstadoPeloNomeMemoriaRepository,
+    private readonly encontrarCupomDeDescontoPeloCodigoMemoriaRepository: EncontrarCupomDeDescontoPeloCodigoMemoriaRepository,
   ) {}
 
   async validate(value: string, args: ValidationArguments) {
@@ -63,6 +65,13 @@ export class IsUniqueRule implements ValidatorConstraintInterface {
         case 'Estado':
           result = await this.encontrarEstadoRepository.encontrar(value);
           this.errorMessage = 'Nome já utilizado.';
+          break;
+        case 'Cupom':
+          result =
+            await this.encontrarCupomDeDescontoPeloCodigoMemoriaRepository.encontrar(
+              value,
+            );
+          this.errorMessage = 'Código já utilizado.';
           break;
         default:
           return false;

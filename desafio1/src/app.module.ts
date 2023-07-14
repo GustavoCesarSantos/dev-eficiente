@@ -5,6 +5,7 @@ import { CategoriasModule } from './categorias/categorias.module';
 import { LivrosModule } from './livros/livros.module';
 import { PaisesModule } from './paises/paises.module';
 import { ComprasModule } from './compras/compras.module';
+import { CuponsDeDescontoModule } from './cupons-de-desconto/cupons-de-desconto.module';
 import { IsUniqueRule } from './customValidations/rules/is-unique.rule';
 import { IsFutureRule } from './customValidations/rules/is-future.rule';
 import { IsCpfOrCnpjRule } from './customValidations/rules/is-cpf-or-cnpj.rule';
@@ -16,6 +17,7 @@ import { IsCpfOrCnpjRule } from './customValidations/rules/is-cpf-or-cnpj.rule';
     LivrosModule,
     PaisesModule,
     ComprasModule,
+    CuponsDeDescontoModule,
   ],
   controllers: [],
   providers: [IsUniqueRule, IsFutureRule, IsCpfOrCnpjRule],
