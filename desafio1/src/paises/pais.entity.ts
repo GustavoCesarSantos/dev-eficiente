@@ -5,7 +5,8 @@ export class Pais {
   private readonly nome: string;
 
   constructor(nome: string) {
-    (this.id = randomUUID()), (this.nome = nome);
+    this.id = randomUUID();
+    this.nome = nome;
   }
 
   public getId(): string {

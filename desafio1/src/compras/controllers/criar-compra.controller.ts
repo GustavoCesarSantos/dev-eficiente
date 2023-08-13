@@ -18,7 +18,7 @@ export class CriarCompraController {
     try {
       const novaCompra = await criarCompraDTO.toModel();
       const isValid = await this.validarTotalCompraService.execute(novaCompra);
-      if (!isValid) return new BadRequestException('Teste');
+      if (!isValid) return new BadRequestException('Compra invalida');
       await this.criarCompraMemoriaRepository.criar(novaCompra);
     } catch (error) {
       throw error;

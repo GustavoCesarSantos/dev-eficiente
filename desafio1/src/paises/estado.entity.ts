@@ -6,7 +6,9 @@ export class Estado {
   private readonly idPais: string;
 
   constructor(nome: string, idPais: string) {
-    (this.id = randomUUID()), (this.nome = nome), (this.idPais = idPais);
+    this.id = randomUUID();
+    this.nome = nome;
+    this.idPais = idPais;
   }
 
   public getId() {

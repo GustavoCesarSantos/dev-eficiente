@@ -27,6 +27,11 @@ export class ValidarTotalCompraService {
       total += livro.getPreco() * quantidade[livro.getId()];
       return total;
     }, 0);
-    return carrinho.total === total;
+    const cupomDeDesconto = compra.getCupomDeDesconto();
+    let discount = 0;
+    if (cupomDeDesconto) {
+      discount = (total * cupomDeDesconto.getPercentual()) % 100;
+    }
+    return carrinho.total === (cupomDeDesconto ? total - discount : total);
   }
 }

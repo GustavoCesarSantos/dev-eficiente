@@ -1,5 +1,7 @@
 import { randomUUID } from 'node:crypto';
 
+import { CupomDeDesconto } from 'src/cupons-de-desconto/cupom-de-desconto.entity';
+import { encontrarCupomDeDescontoPeloCodigo } from 'src/utils/encontrarCupomDeDescontoPeloCodigo';
 import { estadoPertenceAoPaís } from '../utils/estadoPertenceAoPaís';
 
 type ItemCarrinho = {
@@ -40,6 +42,7 @@ export class Compra {
   private cep: number;
   private status?: string;
   private carrinho: Carrinho;
+  private cupomDeDesconto?: CupomDeDesconto;
 
   constructor(props: CompraConstructor) {
     this.id = randomUUID();
@@ -56,8 +59,64 @@ export class Compra {
     this.carrinho = props.carrinho;
   }
 
+  public getId() {
+    return this.id;
+  }
+
+  public getEmail() {
+    return this.email;
+  }
+
+  public getNome() {
+    return this.nome;
+  }
+
+  public getSobrenome() {
+    return this.sobrenome;
+  }
+
+  public getDocumento() {
+    return this.documento;
+  }
+
+  public getEndereco() {
+    return this.endereco;
+  }
+
+  public getComplemento() {
+    return this.complemento;
+  }
+
+  public getCidade() {
+    return this.cidade;
+  }
+
+  public getIdPais() {
+    return this.idPais;
+  }
+
+  public getIdEstado() {
+    return this.idEstado;
+  }
+
+  public getTelefone() {
+    return this.telefone;
+  }
+
+  public getCep() {
+    return this.cep;
+  }
+
+  public getStatus() {
+    return this.status;
+  }
+
   public getCarrinho() {
     return this.carrinho;
+  }
+
+  public getCupomDeDesconto() {
+    return this.cupomDeDesconto;
   }
 
   public async setIdEstado(idEstado: string) {
@@ -66,6 +125,11 @@ export class Compra {
     }
     await estadoPertenceAoPaís(this.idPais, idEstado);
     this.idEstado = idEstado;
+  }
+
+  public async setCupomDeDesconto(codigo: string) {
+    const cupomDeDesconto = await encontrarCupomDeDescontoPeloCodigo(codigo);
+    this.cupomDeDesconto = cupomDeDesconto;
   }
 
   public setStatus(status: string) {

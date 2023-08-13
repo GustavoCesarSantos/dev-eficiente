@@ -17,4 +17,12 @@ export class CupomDeDesconto {
   public getCodigo() {
     return this.codigo;
   }
+
+  public getValidade() {
+    return this.validade;
+  }
+
+  public getPercentual() {
+    return this.percentual;
+  }
 }
