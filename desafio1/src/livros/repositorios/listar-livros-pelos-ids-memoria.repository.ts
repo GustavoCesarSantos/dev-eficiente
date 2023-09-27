@@ -6,7 +6,7 @@ import { Livro } from '../livro.entity';
 export class ListarLivrosPelosIdsMemoriaRepository {
   private readonly db: Livro[] = [];
 
-  public listar(ids: string[]): Livro[] {
+  public async listar(ids: string[]): Promise<Livro[]> {
     return this.db.filter((livro) => {
       return ids.includes(livro.getId());
     });
