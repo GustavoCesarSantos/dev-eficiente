@@ -16,6 +16,7 @@ export class ValidarTotalCompraService {
     if (cupomDeDesconto) {
       discount = (total * cupomDeDesconto.getPercentual()) % 100;
     }
+    const carrinho = compra.getCarrinho();
     return carrinho.total === (cupomDeDesconto ? total - discount : total);
   }
 }

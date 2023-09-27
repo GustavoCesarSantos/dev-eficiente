@@ -13,6 +13,7 @@ import { EncontrarEstadoPeloIdMemoriaRepository } from './repositorios/paises/re
 @Module({
   imports: [],
   exports: [
+    EncontrarPaisPeloIdMemoriaRepository,
     EncontrarPaisPeloNomeMemoriaRepository,
     EncontrarEstadoPeloNomeMemoriaRepository,
     EncontrarEstadosPeloIdPaisMemoriaRepository,
